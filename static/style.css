@@ -1,0 +1,101 @@
+body {
+    background-color: #1a0033;
+    color: white;
+    font-family: "Times New Roman", serif;
+    text-align: center;
+    margin: 20px;
+}
+
+/* Headings */
+h1 {
+    color: #cc66ff;
+    text-shadow: 0 0 10px #cc66ff;
+}
+
+h2 {
+    color: #e6ccff;
+    margin-top: 25px;
+}
+
+/* Tagline */
+.tagline {
+    color: #d9b3ff;
+    font-style: italic;
+}
+
+/* Image */
+img {
+    border-radius: 50%;
+    border: 2px solid #cc66ff;
+    box-shadow: 0 0 15px #cc66ff;
+    margin: 10px 0;
+}
+
+/* Sections spacing */
+p {
+    max-width: 600px;
+    margin: 10px auto;
+    line-height: 1.5;
+}
+
+/* Lists */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+}
+
+/* Form */
+input, textarea {
+    width: 250px;
+    padding: 8px;
+    border: 1px solid #cc66ff;
+    background-color: #330066;
+    color: white;
+    outline: none;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #d9b3ff;
+}
+
+/* Button */
+button {
+    padding: 8px 15px;
+    background-color: #cc66ff;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #e699ff;
+    box-shadow: 0 0 10px #cc66ff;
+}
+
+/* Divider */
+hr {
+    border: 1px solid #cc66ff;
+    width: 70%;
+}
+
+/* Footer */
+footer, body > p:last-child {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #b366ff;
+}
+
+/* Glow animation */
+h1 {
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px #cc66ff; }
+    to { text-shadow: 0 0 20px #cc66ff; }
+}

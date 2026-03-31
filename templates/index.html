@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <h1>Safa's Portfolio</h1>
+    <img src="{{ url_for('static', filename='profile.jpg') }}" width="120">
+
+    <p class="tagline">
+        Aspiring Web Developer | BCA Student | Passionate Learner
+    </p>
+
+    <hr>
+
+    <!-- ABOUT -->
+    <h2>About Me</h2>
+    <p>
+        I am a motivated BCA student with a strong interest in web development.
+        I enjoy building simple and creative websites while learning new technologies.
+        My goal is to become a full-stack developer and work on real-world projects.
+    </p>
+
+    <!-- EDUCATION -->
+    <h2>Education</h2>
+    <p>
+        Bachelor of Computer Applications (BCA)<br>
+        Kristu Jayanti College, Bangalore<br>
+        Currently in First Year
+    </p>
+
+    <!-- SKILLS -->
+    <h2>Skills</h2>
+    <ul>
+        <li>HTML (Basic structure of web pages)</li>
+        <li>CSS (Styling and layout)</li>
+        <li>Python (Basic programming)</li>
+        <li>Flask (Backend development)</li>
+        <li>Git & GitHub (Version control)</li>
+    </ul>
+
+    <!-- PROJECTS -->
+    <h2>Projects</h2>
+    <p>
+        <b>Portfolio Website:</b> A personal website built using HTML, CSS, Flask, and MySQL.<br>
+        It collects user data through a contact form and stores it in a database.
+    </p>
+
+    <!-- CERTIFICATIONS -->
+    <h2>Certifications</h2>
+    <ul>
+        <li>Python for Beginners</li>
+        <li>Introduction to Web Development</li>
+    </ul>
+
+    <!-- HACKATHONS -->
+    <h2>Hackathons & Activities</h2>
+    <p>
+        Participated in college-level hackathons and coding events.
+        Worked in teams to solve real-world problems and improve problem-solving skills.
+    </p>
+
+    <!-- CONTACT -->
+    <h2>Contact Me</h2>
+
+    <form action="/submit" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required><br><br>
+        <input type="email" name="email" placeholder="Your Email" required><br><br>
+        <textarea name="message" placeholder="Your Message" required></textarea><br><br>
+        <button type="submit">Send Message</button>
+    </form>
+
+    <hr>
+
+    <!-- FOOTER -->
+    <p>© 2026 Safa | All Rights Reserved</p>
+
+</body>
+</html>
