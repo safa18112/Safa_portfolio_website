@@ -4,51 +4,50 @@ import os
 
 app = Flask(__name__)
 
-# ✅ Get database URL from Render
+# Database config
 database_url = os.environ.get('DATABASE_URL')
 
 if database_url:
-    # 🔥 Fix for Render PostgreSQL
     if database_url.startswith("postgres://"):
         database_url = database_url.replace("postgres://", "postgresql://", 1)
     app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 else:
-    # Fallback (local only)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# ✅ CREATE TABLE AUTOMATICALLY (THIS FIXES YOUR ERROR)
-with app.app_context():
-    db.create_all()
-
-# Model
+# ✅ MODEL (MUST COME BEFORE CREATE_ALL)
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     email = db.Column(db.String(100))
     message = db.Column(db.Text)
 
-# Home page
+# ✅ NOW CREATE TABLES
+with app.app_context():
+    db.create_all()
+
+# Routes
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# Form submit
 @app.route('/submit', methods=['POST'])
 def submit():
-    new_msg = Message(
-        name=request.form.get('name'),
-        email=request.form.get('email'),
-        message=request.form.get('message')
-    )
-    db.session.add(new_msg)
-    db.session.commit()
-    return redirect('/')
+    try:
+        new_msg = Message(
+            name=request.form.get('name'),
+            email=request.form.get('email'),
+            message=request.form.get('message')
+        )
+        db.session.add(new_msg)
+        db.session.commit()
+        return redirect('/')
+    except Exception as e:
+        return f"Error: {e}"  # TEMP debug
 
-# JSON view
 @app.route('/messages')
 def messages():
     msgs = Message.query.all()
@@ -59,12 +58,10 @@ def messages():
         ]
     }
 
-# Admin table view
 @app.route('/admin')
 def admin():
     msgs = Message.query.all()
     return render_template('admin.html', messages=msgs)
 
-# Run locally
 if __name__ == '__main__':
     app.run(debug=True)
