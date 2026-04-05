@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin - Messages</title>
+</head>
+
+<body>
+    <h2>Stored Messages</h2>
+
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+        </tr>
+
+        {% for msg in messages %}
+        <tr>
+            <td>{{ msg.name }}</td>
+            <td>{{ msg.email }}</td>
+            <td>{{ msg.message }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

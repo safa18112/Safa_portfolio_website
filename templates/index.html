@@ -1,83 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Safa Shariff's Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <h1>Safa's Portfolio</h1>
-    <img src="{{ url_for('static', filename='profile.jpg') }}" width="120">
+<div class="container">
 
-    <p class="tagline">
-        Aspiring Web Developer | BCA Student | Passionate Learner
-    </p>
+    <!-- NAME + TAGLINE -->
+    <h1>Safa Shariff's Portfolio </h1>
+    <p class="tagline">Aspiring Developer | Learner | Future Tech Professional</p>
 
-    <hr>
+    <!-- FLASH MESSAGE -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="success">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+    {% endwith %}
 
-    <!-- ABOUT -->
-    <h2>About Me</h2>
-    <p>
-        I am a motivated BCA student with a strong interest in web development.
-        I enjoy building simple and creative websites while learning new technologies.
-        My goal is to become a full-stack developer and work on real-world projects.
-    </p>
+    <section>
+        <h2>🌸 About Me</h2>
+        <p>
+            I am a passionate and dedicated student currently pursuing my academic journey in the field of technology.
+            I enjoy learning new concepts, building projects, and continuously improving my skills to grow into a confident developer.
+            My goal is to create impactful solutions and establish a strong presence in the tech industry.
+        </p>
+    </section>
 
-    <!-- EDUCATION -->
-    <h2>Education</h2>
-    <p>
-        Bachelor of Computer Applications (BCA)<br>
-        Kristu Jayanti College, Bangalore<br>
-        Currently in First Year
-    </p>
+    <section>
+        <h2>🎓 Education</h2>
+        <ul>
+            <li>BCA (Bachelor of Computer Applications) - Ongoing</li>
+            <li>Strong foundation in Mathematics, Logic & Problem Solving</li>
+        </ul>
+    </section>
 
-    <!-- SKILLS -->
-    <h2>Skills</h2>
-    <ul>
-        <li>HTML (Basic structure of web pages)</li>
-        <li>CSS (Styling and layout)</li>
-        <li>Python (Basic programming)</li>
-        <li>Flask (Backend development)</li>
-        <li>Git & GitHub (Version control)</li>
-    </ul>
+    <section>
+        <h2>💻 Skills</h2>
+        <ul>
+            <li>Python (Beginner to Intermediate)</li>
+            <li>HTML, CSS, Basic JavaScript</li>
+            <li>Flask Web Development</li>
+            <li>Problem Solving & Logical Thinking</li>
+        </ul>
+    </section>
 
-    <!-- PROJECTS -->
-    <h2>Projects</h2>
-    <p>
-        <b>Portfolio Website:</b> A personal website built using HTML, CSS, Flask, and MySQL.<br>
-        It collects user data through a contact form and stores it in a database.
-    </p>
+    <section>
+        <h2>🚀 Projects</h2>
+        <ul>
+            <li>Personal Portfolio Website</li>
+            <li>Database-connected Contact Form</li>
+            <li>Basic Web Applications using Flask</li>
+        </ul>
+    </section>
 
-    <!-- CERTIFICATIONS -->
-    <h2>Certifications</h2>
-    <ul>
-        <li>Python for Beginners</li>
-        <li>Introduction to Web Development</li>
-    </ul>
+    <section>
+        <h2>🎯 Career Objective</h2>
+        <p>
+            To build a strong career in the field of technology by continuously learning, developing innovative projects,
+            and gaining practical experience that contributes to both personal and professional growth.
+        </p>
+    </section>
 
-    <!-- HACKATHONS -->
-    <h2>Hackathons & Activities</h2>
-    <p>
-        Participated in college-level hackathons and coding events.
-        Worked in teams to solve real-world problems and improve problem-solving skills.
-    </p>
+    <section>
+        <h2>📩 Contact Me</h2>
 
-    <!-- CONTACT -->
-    <h2>Contact Me</h2>
+        <form action="/submit" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Write your message here..." required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
 
-    <form action="/submit" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required><br><br>
-        <input type="email" name="email" placeholder="Your Email" required><br><br>
-        <textarea name="message" placeholder="Your Message" required></textarea><br><br>
-        <button type="submit">Send Message</button>
-    </form>
-
-    <hr>
-
-    <!-- FOOTER -->
-    <p>© 2026 Safa | All Rights Reserved</p>
+</div>
 
 </body>
 </html>
