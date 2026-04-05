@@ -4,20 +4,25 @@ import os
 
 app = Flask(__name__)
 
-# Database config (Render + Local)
+# ✅ Get database URL from Render
 database_url = os.environ.get('DATABASE_URL')
 
 if database_url:
-    # Fix for Render PostgreSQL URL
+    # 🔥 Fix for Render PostgreSQL
     if database_url.startswith("postgres://"):
         database_url = database_url.replace("postgres://", "postgresql://", 1)
     app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 else:
+    # Fallback (local only)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+# ✅ CREATE TABLE AUTOMATICALLY (THIS FIXES YOUR ERROR)
+with app.app_context():
+    db.create_all()
 
 # Model
 class Message(db.Model):
@@ -31,7 +36,7 @@ class Message(db.Model):
 def home():
     return render_template('index.html')
 
-# Form submission
+# Form submit
 @app.route('/submit', methods=['POST'])
 def submit():
     new_msg = Message(
@@ -43,7 +48,7 @@ def submit():
     db.session.commit()
     return redirect('/')
 
-# JSON view (optional)
+# JSON view
 @app.route('/messages')
 def messages():
     msgs = Message.query.all()
@@ -54,13 +59,12 @@ def messages():
         ]
     }
 
-# 🔥 ADMIN TABLE VIEW (NEW)
+# Admin table view
 @app.route('/admin')
 def admin():
     msgs = Message.query.all()
     return render_template('admin.html', messages=msgs)
 
+# Run locally
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
